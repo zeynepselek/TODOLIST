@@ -1,0 +1,59 @@
+def menu():
+    print("Menu Option. Choose 1, 2, 3 or 4")
+    print("1. Display all schedule")
+    print("2. Search a schedule")
+    print("3. Add a schedule")
+    print("4. Delete a schedule")
+    print("5. Quit")
+
+schedule ={}
+while True:
+    menu()
+    option = int(input("Enter your choice 1,2,3,4 or 5: "))
+    if option == 1:
+
+        print(f"{'Hour' :<10} {'Activity' :<50}")
+        for hour in range(1,25):
+            if hour in schedule:
+                activity =  schedule[hour]
+                print(f"{hour :<10} {activity :<50}")
+            else:
+                print(f"{hour :<10} {'' :<50}")
+
+    if option == 2:
+        hour = int(input("Please enter hour from 1 to 24: "))
+        if hour in schedule:
+            sch = schedule[hour]
+            print(f"{'Hour' :<10} {'Activity' :<50}")
+            print(f"{hour :<10} {sch :<50}")
+        else:
+            print(f"There is no schedule for the {hour} hour.")
+            print()
+    if option == 3:
+         hour = int(input("Please enter hour from 1 to 24: "))
+         while hour <1 or hour>24:
+             hour = int(input("Please enter hour from 1 to 24: "))
+         if hour in schedule:
+             update_opt = input("Do you want to update the schedule (y/n): ")
+             if update_opt.lower()=="y":   
+                 activity = input("Enter activity details: ")
+                 schedule[hour] = activity
+                 print("Schedule updated")
+                 print()
+             else:
+                 print("Activity already added.")
+         else:
+             activity = input("Enter activity details: ")
+             schedule[hour] = activity
+             print("Activity added to the schedule.")
+             print()
+    if option == 4:
+        hour = int(input("Please enter hour from 1 to 24: "))
+        if hour in schedule:
+            schedule.pop(hour)
+            print("Activity deleted")
+        else:
+             print(f"There is no schedule for the {hour} hour.")
+    if option == 5:
+        print("Bye!")
+        break
